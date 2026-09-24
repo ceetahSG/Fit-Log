@@ -1,12 +1,14 @@
 "use client";
+import { WorkoutsContext } from "@/context/WorkoutsContext";
 import IWorkout from "@/type/type";
 import { Calendar } from "lucide-react";
-import React from "react";
+import React, { useContext } from "react";
 
 const AddButton = ({ workout }: { workout: IWorkout }) => {
+  const { addWorkout, setAddWorkout } = useContext(WorkoutsContext);
   const handleAddWorkout = () => {
     console.log("Workout added to today's plan");
-    console.log(workout);
+    setAddWorkout([...addWorkout, workout]);
   };
   return (
     <button

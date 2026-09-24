@@ -1,6 +1,6 @@
 "use client";
 import React, { createContext, ReactNode, useState } from "react";
-const WorkoutsContext = createContext({});
+export const WorkoutsContext = createContext({});
 const WorkoutsProvider = ({ children }: { children: ReactNode }) => {
   const [addWorkout, setAddWorkout] = useState([]);
   const [saveWorkout, setSaveWorkout] = useState([]);

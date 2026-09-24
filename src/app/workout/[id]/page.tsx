@@ -140,8 +140,8 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPageProps) => {
 
           {/* Action Buttons */}
           <div className="mt-auto flex flex-col gap-4 sm:flex-row">
-            <AddButton workout = {workout} />
-            <SaveButton />
+            <AddButton workout={workout} />
+            <SaveButton workout={workout} />
           </div>
         </div>
       </div>
