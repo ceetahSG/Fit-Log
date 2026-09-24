@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { Oswald } from "next/font/google";
-import { Calendar, Bookmark } from "lucide-react";
 import AddButton from "@/app/components/workoutDetails/AddButton";
 import SaveButton from "@/app/components/workoutDetails/SaveButton";
 
