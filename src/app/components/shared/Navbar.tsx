@@ -1,12 +1,15 @@
 import React from "react";
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
+import Link from "next/link";
 const links = (
   <>
     <div className="flex flex-col gap-2 lg:flex-row lg:gap-4">
-      <button className="btn btn-soft btn-success rounded-2xl px-5 text-sm font-bold">
-        Workouts
-      </button>
+      <Link href="/">
+        <button className="btn btn-soft btn-success rounded-2xl px-5 text-sm font-bold">
+          Workouts
+        </button>
+      </Link>
       <button>My Plan</button>
     </div>
   </>
