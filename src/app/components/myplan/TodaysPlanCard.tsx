@@ -7,12 +7,20 @@ import Image from "next/image";
 import { Clock3, Flame, Star } from "lucide-react";
 import Link from "next/link";
 import { WorkoutsContext } from "@/context/WorkoutsContext";
+import { toast } from "react-toastify";
 
 const TodaysPlanCard = ({ workout }: { workout: IWorkout }) => {
   console.log("TodaysPlanCard workout:", workout);
   const { addWorkout, setAddWorkout } = useContext(WorkoutsContext);
   const handleMarkAsDone = () => {
     setAddWorkout(addWorkout.filter((w: IWorkout) => w.id !== workout.id));
+    toast.success(
+      `${workout.name} marked as done and removed from today's plan`,
+    );
+  };
+  const handleRemoveWorkout = () => {
+    setAddWorkout(addWorkout.filter((w: IWorkout) => w.id !== workout.id));
+    toast.warning(`${workout.name} removed from today's plan`);
   };
 
   return (
@@ -61,7 +69,12 @@ const TodaysPlanCard = ({ workout }: { workout: IWorkout }) => {
             {" "}
             Mark as Done
           </button>
-          <button className="text-[#6B7280] text-2xl">X</button>
+          <button
+            className="text-[#6B7280] text-2xl"
+            onClick={handleRemoveWorkout}
+          >
+            X
+          </button>
         </div>
       </div>
     </div>

@@ -126,8 +126,8 @@ const MyPlanPage = () => {
             <p className="text-sm text-[#9ca3af] md:text-base">
               Browse the library and add a lift to get today moving.
             </p>
-            <Link href="/workouts">
-              <button className="mt-4 rounded-xl bg-[#C2F800] px-8 py-3 text-sm font-bold text-black transition-transform hover:scale-105 active:scale-95">
+            <Link href="/">
+              <button className="mt-4 rounded-4xl bg-[#C2F800] px-8 py-3 text-sm font-bold text-black transition-transform hover:scale-105 active:scale-95">
                 Go to workouts
               </button>
             </Link>
@@ -143,8 +143,8 @@ const MyPlanPage = () => {
             <p className="text-sm text-[#9ca3af] md:text-base">
               Browse the library and add a lift to get today moving.
             </p>
-            <Link href="/workouts">
-              <button className="mt-4 rounded-xl bg-[#C2F800] px-8 py-3 text-sm font-bold text-black transition-transform hover:scale-105 active:scale-95">
+            <Link href="/">
+              <button className="mt-4 rounded-4xl bg-[#C2F800] px-8 py-3 text-sm font-bold text-black transition-transform hover:scale-105 active:scale-95">
                 Go to workouts
               </button>
             </Link>

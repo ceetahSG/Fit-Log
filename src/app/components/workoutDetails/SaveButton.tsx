@@ -3,6 +3,7 @@ import { WorkoutsContext } from "@/context/WorkoutsContext";
 import IWorkout from "@/type/type";
 import { Bookmark } from "lucide-react";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 
 const SaveButton = ({ workout }: { workout: IWorkout }) => {
   const { saveWorkout, setSaveWorkout } = useContext(WorkoutsContext);
@@ -14,6 +15,7 @@ const SaveButton = ({ workout }: { workout: IWorkout }) => {
     } else {
       setSaveWorkout([...saveWorkout, workout]);
     }
+    toast.info(`${workout.name} added to saved workouts`);
   };
   const alreadySaved = saveWorkout.some((w) => w.id === workout.id);
   return (

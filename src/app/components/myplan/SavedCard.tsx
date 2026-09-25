@@ -1,12 +1,19 @@
 import IWorkout from "@/type/type";
 
-import React from "react";
+import React, { useContext } from "react";
 
 import Image from "next/image";
 import { Clock3, Flame, Star } from "lucide-react";
 import Link from "next/link";
+import { WorkoutsContext } from "@/context/WorkoutsContext";
+import { toast } from "react-toastify";
 
 const SavedCard = ({ workout }: { workout: IWorkout }) => {
+  const { saveWorkout, setSaveWorkout } = useContext(WorkoutsContext);
+  const handleRemoveWorkout = () => {
+    setSaveWorkout(saveWorkout.filter((w: IWorkout) => w.id !== workout.id));
+    toast.error(`${workout.name} removed from saved workouts`);
+  };
   return (
     <div>
       <div>
@@ -48,7 +55,12 @@ const SavedCard = ({ workout }: { workout: IWorkout }) => {
               </button>
             </Link>
 
-            <button className="text-[#6B7280] text-2xl">X</button>
+            <button
+              className="text-[#6B7280] text-2xl"
+              onClick={handleRemoveWorkout}
+            >
+              X
+            </button>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { WorkoutsContext } from "@/context/WorkoutsContext";
 import IWorkout from "@/type/type";
 import { Calendar } from "lucide-react";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 
 const AddButton = ({ workout }: { workout: IWorkout }) => {
   const { addWorkout, setAddWorkout } = useContext(WorkoutsContext);
@@ -14,6 +15,7 @@ const AddButton = ({ workout }: { workout: IWorkout }) => {
     } else {
       setAddWorkout([...addWorkout, workout]);
     }
+    toast.success(`${workout.name} added to today's plan`);
   };
   const alreadyAdded = addWorkout.some((w) => w.id === workout.id);
   return (
