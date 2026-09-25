@@ -4,6 +4,7 @@ import React from "react";
 
 import Image from "next/image";
 import { Clock3, Flame, Star } from "lucide-react";
+import Link from "next/link";
 
 const SavedCard = ({ workout }: { workout: IWorkout }) => {
   return (
@@ -41,9 +42,12 @@ const SavedCard = ({ workout }: { workout: IWorkout }) => {
           </div>
           {/* Right Div */}
           <div className="flex gap-5 items-center">
-            <button className="btn btn-outline text-white bg-[#232732] rounded-3xl font-light px-5 py-2">
-              View Details
-            </button>
+            <Link href={`/workout/${workout.id}`}>
+              <button className="btn btn-outline rounded-3xl bg-[#232732] px-5 py-2 font-light text-white">
+                View Details
+              </button>
+            </Link>
+
             <button className="text-[#6B7280] text-2xl">X</button>
           </div>
         </div>

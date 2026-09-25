@@ -1,12 +1,19 @@
+"use client";
 import IWorkout from "@/type/type";
 
-import React from "react";
+import React, { useContext } from "react";
 
 import Image from "next/image";
 import { Clock3, Flame, Star } from "lucide-react";
+import Link from "next/link";
+import { WorkoutsContext } from "@/context/WorkoutsContext";
 
 const TodaysPlanCard = ({ workout }: { workout: IWorkout }) => {
-  console.log("TodaysPlanCard workout:", workout); // Log the workout prop to check its value
+  console.log("TodaysPlanCard workout:", workout);
+  const { addWorkout, setAddWorkout } = useContext(WorkoutsContext);
+  const handleMarkAsDone = () => {
+    setAddWorkout(addWorkout.filter((w: IWorkout) => w.id !== workout.id));
+  };
 
   return (
     <div>
@@ -42,10 +49,15 @@ const TodaysPlanCard = ({ workout }: { workout: IWorkout }) => {
         </div>
         {/* Right Div */}
         <div className="flex gap-5 items-center">
-          <button className="btn btn-outline text-white bg-[#232732] rounded-3xl font-light px-5 py-2">
-            View Details
-          </button>
-          <button className="btn bg-[#CCFF00] text-black rounded-3xl py-5">
+          <Link href={`/workout/${workout.id}`}>
+            <button className="btn btn-outline rounded-3xl bg-[#232732] px-5 py-2 font-light text-white">
+              View Details
+            </button>
+          </Link>
+          <button
+            className="btn bg-[#CCFF00] text-black rounded-3xl py-5"
+            onClick={handleMarkAsDone}
+          >
             {" "}
             Mark as Done
           </button>

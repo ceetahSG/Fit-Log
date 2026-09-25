@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Oswald } from "next/font/google";
 import AddButton from "@/app/components/workoutDetails/AddButton";
 import SaveButton from "@/app/components/workoutDetails/SaveButton";
+import IWorkout from "@/type/type";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -24,7 +25,7 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPageProps) => {
   const { id } = await params;
   const workoutData = await getWorkoutDetails();
 
-  const workout = workoutData.find((w: any) => w.id === parseInt(id));
+  const workout = workoutData.find((w: IWorkout) => w.id === parseInt(id));
 
   if (!workout) {
     return (
