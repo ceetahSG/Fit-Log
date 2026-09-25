@@ -6,6 +6,7 @@ import { Oswald } from "next/font/google";
 import { ChevronDown } from "lucide-react";
 import IWorkout from "@/type/type";
 import TodaysPlanCard from "../components/myplan/TodaysPlanCard";
+import SavedCard from "../components/myplan/SavedCard";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -25,8 +26,8 @@ const MyPlanPage = () => {
   // State to manage which tab is currently selected (matching the image which has "Saved" selected)
   const [activeTab, setActiveTab] = useState("Saved");
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-4 py-10 md:p-10 font-sans">
-      <div className="mx-auto flex max-w-5xl flex-col gap-8">
+    <div className=" bg-[#0a0a0a] p-4 py-10 md:p-10 font-sans container mx-auto">
+      <div className=" flex  flex-col gap-8">
         {/* Header Section */}
         <div className="flex flex-col gap-2">
           <h1
@@ -150,9 +151,16 @@ const MyPlanPage = () => {
           </div>
         )}
         {activeTab === "Today's Plan" && addWorkout.length > 0 && (
-          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 flex flex-col gap-4">
             {addWorkout.map((workout: IWorkout) => (
               <TodaysPlanCard key={workout.id} workout={workout} />
+            ))}
+          </div>
+        )}
+        {activeTab === "Saved" && saveWorkout.length > 0 && (
+          <div className="mt-4 flex flex-col gap-4">
+            {saveWorkout.map((workout: IWorkout) => (
+              <SavedCard key={workout.id} workout={workout} />
             ))}
           </div>
         )}
