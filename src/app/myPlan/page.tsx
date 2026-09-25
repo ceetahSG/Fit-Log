@@ -3,7 +3,6 @@ import { WorkoutsContext } from "@/context/WorkoutsContext";
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import { Oswald } from "next/font/google";
-import { ChevronDown } from "lucide-react";
 import IWorkout from "@/type/type";
 import TodaysPlanCard from "../components/myplan/TodaysPlanCard";
 import SavedCard from "../components/myplan/SavedCard";
@@ -25,6 +24,22 @@ const MyPlanPage = () => {
   console.log("addWorkout:", addWorkout.length);
   // State to manage which tab is currently selected (matching the image which has "Saved" selected)
   const [activeTab, setActiveTab] = useState("Saved");
+  const [sortBy, setSortBy] = useState<"rating" | "duration" | "calories">(
+    "rating",
+  );
+  const sortWorkouts = (workout: IWorkout[]) => {
+    const sortedWorkouts = [...workout];
+    if (sortBy === "rating") {
+      sortedWorkouts.sort((a, b) => b.rating - a.rating);
+    } else if (sortBy === "duration") {
+      sortedWorkouts.sort((a, b) => b.duration - a.duration);
+    } else if (sortBy === "calories") {
+      sortedWorkouts.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+    }
+    return sortedWorkouts;
+  };
+  const sortedAddWorkout = sortWorkouts(addWorkout);
+  const sortedSaveWorkout = sortWorkouts(saveWorkout);
   return (
     <div className=" bg-[#0a0a0a] p-4 py-10 md:p-10 font-sans container mx-auto">
       <div className=" flex  flex-col gap-8">
@@ -106,13 +121,19 @@ const MyPlanPage = () => {
           </div>
 
           {/* Sort By Dropdown */}
-          <div className="flex items-center gap-3">
-            <span className="text-sm text-[#9ca3af]">Sort By</span>
-            <button className="flex items-center gap-2 rounded-lg border border-[#272a30] bg-[#15171c] px-4 py-2 text-sm text-white transition-colors hover:bg-[#272a30]">
-              Duration
-              <ChevronDown size={16} className="text-[#9ca3af]" />
-            </button>
-          </div>
+          <select
+            defaultValue="Rating"
+            className="select appearance-none"
+            value={sortBy}
+            onChange={(e) =>
+              setSortBy(e.target.value as "rating" | "duration" | "calories")
+            }
+          >
+            <option disabled={true}>Sort By</option>
+            <option value="rating">Rating</option>
+            <option value="duration">Duration</option>
+            <option value="calories">Calories</option>
+          </select>
         </div>
 
         {/* Empty State Content Area */}
@@ -152,14 +173,14 @@ const MyPlanPage = () => {
         )}
         {activeTab === "Today's Plan" && addWorkout.length > 0 && (
           <div className="mt-4 flex flex-col gap-4">
-            {addWorkout.map((workout: IWorkout) => (
+            {sortedAddWorkout.map((workout: IWorkout) => (
               <TodaysPlanCard key={workout.id} workout={workout} />
             ))}
           </div>
         )}
         {activeTab === "Saved" && saveWorkout.length > 0 && (
           <div className="mt-4 flex flex-col gap-4">
-            {saveWorkout.map((workout: IWorkout) => (
+            {sortedSaveWorkout.map((workout: IWorkout) => (
               <SavedCard key={workout.id} workout={workout} />
             ))}
           </div>

@@ -3,7 +3,9 @@ import WorkoutCard from "../shared/WorkoutCard";
 import IWorkout from "@/type/type";
 import Link from "next/link";
 const getWorkouts = async () => {
-  const response = await fetch("https://api.abcz.workers.dev/api/fitlog");
+  const response = await fetch("https://api.abcz.workers.dev/api/fitlog", {
+    cache: "force-cache",
+  });
   const data = await response.json();
   return data;
 };
