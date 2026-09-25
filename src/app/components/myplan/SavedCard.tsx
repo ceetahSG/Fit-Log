@@ -7,6 +7,7 @@ import { Clock3, Flame, Star } from "lucide-react";
 import Link from "next/link";
 import { WorkoutsContext } from "@/context/WorkoutsContext";
 import { toast } from "react-toastify";
+import { RxCross1 } from "react-icons/rx";
 
 const SavedCard = ({ workout }: { workout: IWorkout }) => {
   const { saveWorkout, setSaveWorkout } = useContext(WorkoutsContext);
@@ -74,7 +75,7 @@ const SavedCard = ({ workout }: { workout: IWorkout }) => {
               className="text-[#6B7280] text-xl sm:text-2xl shrink-0"
               onClick={handleRemoveWorkout}
             >
-              X
+              <RxCross1 />
             </button>
           </div>
         </div>
