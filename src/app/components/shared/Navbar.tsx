@@ -12,17 +12,26 @@ const Navbar = () => {
   const { addWorkout, saveWorkout } = useContext(WorkoutsContext);
 
   return (
-    <nav className="bg-[#0C0D10] py-5">
-      <section className="container mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Image src={Logo} alt="Logo" width={50} height={50} />
-          <h2 className="text-xl font-bold">Fit Log</h2>
+    <nav className="bg-[#0C0D10] py-4 sm:py-5">
+      <section className="container mx-auto flex items-center justify-between gap-2 px-3 sm:px-5 lg:px-0">
+        {/* Logo */}
+        <div className="flex shrink-0 items-center gap-2 sm:gap-4">
+          <Image
+            src={Logo}
+            alt="Logo"
+            width={50}
+            height={50}
+            className="h-9 w-9 sm:h-10 sm:w-10"
+          />
+
+          <h2 className="text-base font-bold sm:text-xl">Fit Log</h2>
         </div>
 
-        <div className="flex flex-col items-center gap-2 lg:flex-row lg:gap-4">
+        {/* Navigation */}
+        <div className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2 lg:gap-4">
           <Link href="/">
             <button
-              className={`px-5 py-2 text-sm font-bold rounded-2xl ${
+              className={`rounded-2xl px-3 py-1.5 text-xs font-bold sm:px-5 sm:py-2 sm:text-sm ${
                 pathname === "/" ? "bg-[#C2F800] text-black" : "text-white"
               }`}
             >
@@ -32,7 +41,7 @@ const Navbar = () => {
 
           <Link href="/myPlan">
             <button
-              className={`rounded-2xl px-5 py-2 text-sm font-bold ${
+              className={`rounded-2xl px-3 py-1.5 text-xs font-bold sm:px-5 sm:py-2 sm:text-sm ${
                 pathname === "/myPlan"
                   ? "bg-[#C2F800] text-black"
                   : "text-white"
@@ -43,16 +52,17 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="flex gap-4">
+        {/* Plan / Saved */}
+        <div className="flex shrink-0 items-center gap-1.5 text-xs sm:gap-3 sm:text-sm">
           <h1>Plan</h1>
 
-          <h1 className="rounded-4xl border-2 border-[#2D313B] bg-[#C2F800] px-2 font-bold text-black">
+          <h1 className="rounded-full border-2 border-[#2D313B] bg-[#C2F800] px-1.5 py-0.5 font-bold text-black sm:px-2">
             {addWorkout.length}
           </h1>
 
           <h1>Saved</h1>
 
-          <h1 className="rounded-4xl border-2 border-[#2D313B] bg-[#0C0D10] px-2 font-bold text-[#D1D5DB]">
+          <h1 className="rounded-full border-2 border-[#2D313B] bg-[#0C0D10] px-1.5 py-0.5 font-bold text-[#D1D5DB] sm:px-2">
             {saveWorkout.length}
           </h1>
         </div>

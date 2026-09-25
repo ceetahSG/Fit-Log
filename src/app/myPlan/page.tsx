@@ -145,7 +145,7 @@ const MyPlanPage = () => {
 
           {/* Empty State Content Area */}
           {activeTab === "Today's Plan" && addWorkout.length === 0 && (
-            <div className="mt-4 flex min-h-[400px] w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-[#272a30] bg-[#0a0a0a] p-8 text-center md:p-12">
+            <div className="mt-4 flex min-h-100 w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-[#272a30] bg-[#0a0a0a] p-8 text-center md:p-12">
               <h2
                 className={`${oswald.className} text-2xl font-bold uppercase tracking-wide text-white md:text-3xl`}
               >
@@ -162,7 +162,7 @@ const MyPlanPage = () => {
             </div>
           )}
           {activeTab === "Saved" && saveWorkout.length === 0 && (
-            <div className="mt-4 flex min-h-[400px] w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-[#272a30] bg-[#0a0a0a] p-8 text-center md:p-12">
+            <div className="mt-4 flex min-h-100 w-full flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed border-[#272a30] bg-[#0a0a0a] p-8 text-center md:p-12">
               <h2
                 className={`${oswald.className} text-2xl font-bold uppercase tracking-wide text-white md:text-3xl`}
               >
