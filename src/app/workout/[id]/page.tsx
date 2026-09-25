@@ -64,9 +64,9 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPageProps) => {
   return (
     <div className="min-h-screen bg-black p-4 py-10 md:p-10">
       {/* Main Card Container */}
-      <div className="mx-auto flex max-w-[1000px] flex-col gap-8 rounded-3xl border border-[#272a30] bg-[#15171c] p-6 shadow-lg md:flex-row md:gap-10 md:p-10">
+      <div className="mx-auto flex max-w-250 flex-col gap-8 rounded-3xl border border-[#272a30] bg-[#15171c] p-6 shadow-lg md:flex-row md:gap-10 md:p-10">
         {/* Left Column (Image) */}
-        <div className="relative h-[300px] w-full shrink-0 overflow-hidden rounded-2xl md:h-[500px] md:w-[400px]">
+        <div className="relative h-75 w-full shrink-0 overflow-hidden rounded-2xl md:h-125 md:w-100">
           <Image
             src={workout.image}
             alt={workout.name}

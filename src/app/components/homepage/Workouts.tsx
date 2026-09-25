@@ -1,7 +1,5 @@
-import React from "react";
 import WorkoutCard from "../shared/WorkoutCard";
 import IWorkout from "@/type/type";
-import Link from "next/link";
 const getWorkouts = async () => {
   const response = await fetch("https://api.abcz.workers.dev/api/fitlog", {
     cache: "force-cache",
