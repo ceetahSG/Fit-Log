@@ -24,9 +24,7 @@
 
 6. **Smart Sorting** - Filter your workout library by duration, calories burned, or user rating
 
-7. **Data Persistence** - Your plan and saved workouts persist across browser sessions using localStorage
-
-8. **Fully Responsive Design** - Seamless experience on mobile, tablet, and desktop screens
+7. **Fully Responsive Design** - Seamless experience on mobile, tablet, and desktop screens
 
 ---
 
@@ -39,7 +37,6 @@
 | **TypeScript** | Static typing for safer, more maintainable code |
 | **Tailwind CSS** | Utility-first CSS framework for responsive styling |
 | **React Context API** | Global state management for workouts and plans |
-| **localStorage API** | Client-side data persistence without backend |
 | **Vercel** | Deployment and hosting platform |
 
 ---
@@ -77,80 +74,116 @@ Navigate to `http://localhost:3000`
 
 ```
 src/
-├── app/                          # Next.js App Router
-│   ├── page.tsx                  # Home page (workout library)
+├── app/                              # Next.js App Router pages
+│   ├── page.tsx                      # Home page (workout library)
+│   ├── layout.tsx                    # Root layout with context provider
 │   ├── myPlan/
-│   │   └── page.tsx              # My Plan page
+│   │   └── page.tsx                  # My Plan page
 │   ├── workout/
 │   │   └── [id]/
-│   │       └── page.tsx          # Workout detail page
-│   └── layout.tsx                # Root layout with context provider
-├── components/                   # Reusable React components
-│   ├── Navbar.tsx
-│   ├── Hero.tsx
-│   ├── WorkoutCard.tsx
-│   ├── Footer.tsx
-│   └── ...
-├── context/
-│   └── WorkoutsContext.tsx       # Global state management
-├── hooks/
-│   ├── useLocalStorage.ts        # Custom hook for persistence
-│   └── useWorkout.ts             # Custom hook for context
-├── type/
-│   └── type.ts                   # TypeScript interfaces
-└── styles/                       # Global styles
+│   │       └── page.tsx              # Workout detail page
+│   ├── components/                   # Feature-specific components
+│   │   ├── banner/
+│   │   │   └── HeroBanner.tsx        # Hero section with CTA
+│   │   ├── homepage/                 # Homepage components
+│   │   ├── myplan/
+│   │   │   ├── SavedCard.tsx         # Saved workouts card
+│   │   │   └── TodaysPlanCard.tsx    # Today's plan card
+│   │   ├── workoutDetails/
+│   │   │   ├── AddButton.tsx         # Add to plan button
+│   │   │   └── SaveButton.tsx        # Save for later button
+│   │   └── shared/                   # Shared across pages
+│   │       ├── Footer.tsx
+│   │       ├── Navbar.tsx
+│   │       └── WorkoutCard.tsx
+│   ├── context/
+│   │   └── WorkoutsContext.tsx       # Global state management
+│   ├── type/
+│   │   └── type.tsx                  # TypeScript interfaces & types
+│   ├── assets/
+│   │   ├── banner.png
+│   │   ├── footerLogo.png
+│   │   └── logo.png
+│   ├── globals.css                   # Global styles
+│   └── loading.tsx                   # Loading component
+├── public/                           # Static assets
+│   ├── files.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── config files
+│   ├── next.config.ts
+│   ├── tsconfig.json
+│   ├── tailwind.config.ts
+│   ├── eslint.config.mjs
+│   └── package.json
 ```
 
 ---
 
-## 💻 Usage
+## 💻 How to Use FitLog
 
-### Adding a Workout to Today's Plan
+### 🏠 Home Page (Workout Library)
 
-1. Navigate to the **Workouts** page
-2. Click on any workout card to view details
-3. Click **"Add to today's plan"** button
-4. Toast notification confirms the addition
-5. Plan badge in navbar updates automatically
+1. Open the app → See **THE LIBRARY** section with 12 workouts
+2. Each workout card shows:
+   - Workout image
+   - Category tags (CHEST, ARMS, LEGS, etc.)
+   - Workout name
+   - Equipment needed
+   - Duration, calories, and rating
+3. Click any card → Navigate to **Workout Detail Page**
 
-### Saving Workouts for Later
+### 🏋️ Workout Detail Page
 
-1. On the workout detail page, click **"Save for later"**
-2. Access saved workouts from **My Plan** → **Saved** tab
-3. View your personal collection anytime
+1. View comprehensive workout information:
+   - Large image
+   - Description
+   - Key specs (Equipment, Difficulty, Sets, Reps, Duration, Calories, Rating)
+   - Step-by-step instructions
+2. **Add to today's plan** button:
+   - Adds workout to your daily plan
+   - Shows toast: "Added to today's plan"
+   - Navbar Plan badge increments
+3. **Save for later** button:
+   - Saves workout to your collection
+   - Shows toast: "Saved for later"
+   - Navbar Saved badge increments
 
-### Managing Your Plan
+### 📋 My Plan Page
 
-1. Visit **My Plan** page
-2. Switch between **Today's Plan** and **Saved** tabs
-3. Use **Sort By** dropdown to organize by Duration, Calories, or Rating
-4. Click **"Mark as Done"** to complete an exercise
-5. Click **"✕"** to remove a workout from your plan
+1. **Metrics Dashboard** (top):
+   - Shows total Exercises, Minutes, and Calories
+   - Updates in real-time as you add/remove workouts
 
-### Metrics Dashboard
+2. **Tab Navigation**:
+   - **Today's Plan** - Workouts added for today (max 5)
+   - **Saved** - Workouts saved for later reference
 
-Real-time statistics in My Plan page:
-- **Exercises** - Total count of workouts in plan
-- **Minutes** - Total duration of all exercises
-- **Calories** - Total calories burned
+3. **Sort Options**:
+   - Click "Sort By" dropdown
+   - Choose: Duration, Calories, or Rating
+
+4. **Manage Workouts**:
+   - Each card shows thumbnail, name, equipment, stats
+   - **View Details** - Opens workout detail page
+   - **Mark as Done** ✓ - Removes from plan (marks complete)
+   - **Remove** ✕ - Deletes from current tab
+
+### 📊 Real-time Feedback
+
+- **Toast Notifications** - See confirmation when you add/save/remove
+- **Badge Counters** - Plan and Saved badges in navbar show live counts
+- **Empty States** - Helpful messages when tabs are empty
+- **Input Validation**:
+  - Can't add duplicate workouts
+  - Max 5 workouts in today's plan
+  - Can't exceed limits
 
 ---
 
-## 🔄 Data Persistence
 
-Your workout plans automatically save to your browser's localStorage. This means:
-
-✅ Plans persist across page refreshes  
-✅ Plans survive browser restarts  
-✅ Each browser/device has separate data  
-⚠️ Clearing browser cache will clear saved plans  
-
-### localStorage Keys
-
-- `fitlog-todays-plan` - Workouts added to today's plan
-- `fitlog-saved-workouts` - Workouts saved for later
-
----
 
 ## 📱 Responsive Design
 
@@ -171,7 +204,7 @@ FitLog fetches workout data from a RESTful API:
 **Base URL:** `https://api.abcz.workers.dev/api/fitlog`
 
 **Endpoints:**
-- `GET /api/fitlog` - Get all workouts
+- `GET /api/fitlog` - Retrieve all 12 workouts
 - `GET /api/fitlog/:id` - Get specific workout by ID
 
 **Response Format:**
@@ -188,9 +221,44 @@ FitLog fetches workout data from a RESTful API:
   "duration": 25,
   "calories": 180,
   "rating": 4.8,
-  "instructions": ["Lie on the bench...", "Unrack with locked elbows..."]
+  "instructions": [
+    "Lie on the bench with eyes under the bar and feet planted.",
+    "Unrack with locked elbows and lower the bar to mid-chest.",
+    "Press up in a slight arc until elbows lock without bouncing.",
+    "Keep shoulder blades pinched and a natural arch in the back."
+  ]
 }
 ```
+
+## 🏗️ State Management with React Context
+
+FitLog uses **React Context API** for global state management:
+
+**WorkoutsContext** handles:
+- `addWorkout[]` - Array of workouts added to today's plan
+- `saveWorkout[]` - Array of workouts saved for later
+- `setAddWorkout()` - Update today's plan
+- `setSaveWorkout()` - Update saved workouts
+
+**Usage in Components:**
+```typescript
+const { addWorkout, saveWorkout, setAddWorkout, setSaveWorkout } = useContext(WorkoutsContext);
+
+// Add to plan with validation
+if (addWorkout.length >= 5) {
+  toast.error("Plan is full (max 5 workouts)");
+} else if (addWorkout.some(w => w.id === workout.id)) {
+  toast.error("Workout already in plan");
+} else {
+  setAddWorkout([...addWorkout, workout]);
+}
+```
+
+This approach provides:
+- ✅ Centralized state management
+- ✅ Easy access from any component
+- ✅ Real-time updates to badges and metrics
+- ✅ Clean separation of concerns
 
 ---
 
@@ -208,24 +276,44 @@ FitLog fetches workout data from a RESTful API:
 ## 🧪 Testing Features
 
 ### Test Adding a Workout
-1. Go to Workouts page
-2. Click any workout card → "Add to today's plan"
-3. Check that Plan badge increments
-4. Refresh page → workout still there ✅
+1. Go to home page (Workouts library)
+2. Click any workout card → Opens detail page
+3. Click "Add to today's plan" button
+4. ✅ Toast shows success message
+5. ✅ Plan badge in navbar increments
+6. ✅ Redirects back to home or stays on page
 
-### Test 5-Lift Cap
-1. Add 5 workouts to plan
-2. Click 6th workout → button disabled
-3. Toast shows: "You can only add up to 5 workouts" ✅
+### Test 5-Lift Cap Enforcement
+1. Go to home page
+2. Click 5 different workouts → "Add to today's plan" on each
+3. After adding 5th workout, try adding 6th
+4. ✅ Toast error: "You can only add up to 5 workouts to today's plan"
+5. ✅ Button is disabled/blocked
 
 ### Test Duplicate Prevention
-1. Add same workout twice
-2. On second attempt, toast shows: "Workout already exists" ✅
+1. Add a workout to plan
+2. Go back and try adding same workout again
+3. ✅ Toast error: "Workout already exists in today's plan"
+4. ✅ Not added twice
 
-### Test Data Persistence
+### Test My Plan Page Navigation
+1. Click Plan or Saved badges in navbar
+2. ✅ Redirects to `/myPlan`
+3. ✅ Shows correct tab content
+4. ✅ Metrics update live as items added/removed
+
+### Test Sorting
+1. Go to My Plan page
+2. Click "Sort By" dropdown
+3. Select Duration, Calories, or Rating
+4. ✅ Workouts reorder based on selection
+
+### Test Remove Functionality
 1. Add workouts to plan
-2. Press F5 to refresh
-3. All workouts still visible ✅
+2. Click "✕" Remove button on any card
+3. ✅ Workout removed from plan
+4. ✅ Toast confirms removal
+5. ✅ Metrics update (exercise count, minutes, calories)
 
 ---
 
@@ -264,25 +352,29 @@ FitLog fetches workout data from a RESTful API:
 ✅ Context API for state management  
 ✅ Responsive CSS with Tailwind  
 ✅ Semantic HTML  
-✅ Error boundary handling  
+✅ API integration with error handling  
 ✅ Clean git history with meaningful commits  
-✅ Environment variable support  
+✅ Input validation & error messages  
+✅ Toast notifications for user feedback  
 
 ---
 
-## 🐛 Known Limitations
+## 🐛 Known Limitations & Future Enhancements
 
-- localStorage is limited to ~5-10MB per domain
-- Data is not synced across different browsers
-- No backend authentication (data not encrypted)
+**Current Limitations:**
+- Plans are stored in memory (reset on page refresh)
+- No user authentication system
 - Workouts are read-only from API
+- No backend database
 
-**Future enhancements could add:**
-- User authentication & cloud storage
-- Personal workout history
-- Progress tracking & statistics
-- Social features (share plans)
-- Advanced filtering and search
+**Planned Enhancements:**
+- **localStorage Integration** - Persist plans across page refreshes
+- **User Authentication** - Save plans to cloud storage
+- **Personal Workout History** - Track completed workouts
+- **Progress Tracking & Statistics** - Visualize fitness journey
+- **Social Features** - Share plans with friends
+- **Advanced Filtering & Search** - Find workouts by name/tag
+- **Backend API** - Replace mock API with custom backend
 
 ---
 
@@ -292,14 +384,16 @@ The project includes 12+ meaningful commits showing development progression:
 
 ```
 ✓ Initial project setup
-✓ Added navbar component
-✓ Implemented workout library grid
-✓ Created workout detail page
+✓ Created project structure & TypeScript setup
+✓ Built Navbar component with badges
+✓ Implemented Hero/Banner section
+✓ Created Workout Library grid (3x4 layout)
+✓ Built Workout Detail page with full specs
+✓ Implemented Add to Plan & Save buttons
 ✓ Built My Plan page with tabs
-✓ Added localStorage persistence
-✓ Implemented sort functionality
-✓ Fixed responsive design issues
-✓ Added toast notifications
+✓ Added Sort dropdown (Duration/Calories/Rating)
+✓ Implemented toast notifications
+✓ Added Context API for state management
 ✓ Deployed to Vercel
 ... and more
 ```
@@ -348,7 +442,7 @@ For issues, suggestions, or questions:
 |--------|--------|
 | Core Features | ✅ Complete |
 | Responsive Design | ✅ Complete |
-| Data Persistence | ✅ Complete |
+| Data Persistence | ⚠️ In-Memory Only (localStorage planned) |
 | Deployment | ✅ Live |
 | Testing | ✅ Manual |
 | Documentation | ✅ Complete |
