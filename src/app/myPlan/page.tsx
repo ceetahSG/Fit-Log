@@ -127,7 +127,7 @@ const MyPlanPage = () => {
             <div className="grid grid-cols-2 items-center">
               <h2 className=" text-[#9ca3af]">Sort By</h2>
               <select
-                value="Rating"
+                value={sortBy}
                 className="select appearance-none border-none rounded-xl"
                 onChange={(e) =>
                   setSortBy(
