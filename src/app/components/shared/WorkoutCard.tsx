@@ -14,13 +14,13 @@ const WorkoutCard = ({ workout }: { workout: IWorkout }) => {
     <Link href={`/workout/${workout.id}`}>
       <div className="overflow-hidden rounded-3xl border border-[#272a30] bg-[#15171c] shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
         {/* Image */}
-        <div className="relative h-[245px] w-full">
+        <div className="relative h-61.25 w-full">
           <Image
             src={workout.image}
             alt={workout.name}
             fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover"
+            sizes="(max-width: 768px) 50vw, 50vw"
+            className="object-cover object-middle "
           />
         </div>
 
