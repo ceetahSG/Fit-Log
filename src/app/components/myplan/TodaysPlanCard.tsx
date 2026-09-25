@@ -68,9 +68,9 @@ const TodaysPlanCard = ({ workout }: { workout: IWorkout }) => {
         </div>
 
         {/* Right Div */}
-        <div className="flex gap-2 sm:gap-3 md:gap-5 items-center justify-end flex-wrap lg:flex-nowrap">
+        <div className="flex gap-2  justify-end  sm:gap-3 md:gap-5  lg:flex-nowrap sm:justify-end">
           <Link href={`/workout/${workout.id}`} className="w-full sm:w-auto">
-            <button className="btn btn-outline rounded-3xl bg-[#232732] px-4 sm:px-5 py-2 font-light text-white w-full sm:w-auto text-xs sm:text-sm">
+            <button className="btn btn-outline rounded-3xl bg-[#232732] px-4 sm:px-5 py-2 font-light text-white text-xs sm:text-sm">
               View Details
             </button>
           </Link>
