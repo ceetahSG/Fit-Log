@@ -10,9 +10,8 @@ const getWorkouts = async () => {
 
 const Workouts = async () => {
   const workouts = await getWorkouts();
-  console.log(workouts);
   return (
-    <section className="container mx-auto my-20">
+    <section id="product" className=" container mx-auto my-20">
       <div className="mb-10 flex flex-col gap-2">
         <h1 className="text-3xl font-bold text-white">THE LIBRARY</h1>
         <p className="text-[#9ca3af]">

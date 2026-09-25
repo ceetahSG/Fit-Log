@@ -1,8 +1,14 @@
+"use client";
 import React from "react";
 import Banner from "@/assets/banner.png";
 import Image from "next/image";
 
 const HeroBanner = () => {
+  const handleBrowseClick = () => {
+    document.getElementById("product")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
   return (
     <div>
       <div className="hero-content flex flex-row-reverse justify-between gap-20 mx-auto container py-25 px-20 rounded-4xl bg-[#222630] my-10">
@@ -17,7 +23,10 @@ const HeroBanner = () => {
             into todays plan, and watch the weeks work add up.
           </p>
           <div>
-            <button className="btn btn-active bg-[#C2F800] text-black rounded-l">
+            <button
+              className="btn btn-active bg-[#C2F800] text-black rounded-l"
+              onClick={handleBrowseClick}
+            >
               Browse Workouts
             </button>
           </div>

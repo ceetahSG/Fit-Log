@@ -91,7 +91,7 @@ const MyPlanPage = () => {
                   : "text-[#9ca3af] hover:text-white"
               }`}
             >
-              Today's Plan
+              Todays Plan
             </button>
             <button
               onClick={() => setActiveTab("Saved")}
