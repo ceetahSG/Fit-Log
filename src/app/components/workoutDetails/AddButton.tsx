@@ -9,7 +9,10 @@ const AddButton = ({ workout }: { workout: IWorkout }) => {
   const { addWorkout, setAddWorkout } = useContext(WorkoutsContext);
   const handleAddWorkout = () => {
     console.log("Workout added to today's plan");
-    if (addWorkout.some((w) => w.id === workout.id)) {
+    if (addWorkout.length >= 5) {
+      toast.error("You can only add up to 5 workouts to today's plan");
+      return;
+    } else if (addWorkout.some((w) => w.id === workout.id)) {
       console.log("Workout already exists in today's plan");
       return;
     } else {
