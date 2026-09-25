@@ -25,7 +25,7 @@ const MyPlanPage = () => {
   // State to manage which tab is currently selected (matching the image which has "Saved" selected)
   const [activeTab, setActiveTab] = useState("Saved");
   const [sortBy, setSortBy] = useState<"Rating" | "Duration" | "Calories">(
-    "Rating",
+    "Duration",
   );
   const sortWorkouts = (workout: IWorkout[]) => {
     const sortedWorkouts = [...workout];
