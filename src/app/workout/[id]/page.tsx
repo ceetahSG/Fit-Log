@@ -39,7 +39,6 @@ const WorkoutDetailsPage = async ({ params }: IWorkoutDetailsPageProps) => {
     );
   }
 
-  // Fallbacks mapping your original design to the assumed API structure
   const tags = workout.muscleGroups || workout.tags || ["Chest", "Arms"];
   const instructions = workout.instructions || [
     "Lie on the bench with eyes under the bar and feet planted.",
