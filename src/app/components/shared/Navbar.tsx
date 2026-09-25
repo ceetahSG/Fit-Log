@@ -1,15 +1,17 @@
 "use client";
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { WorkoutsContext } from "@/context/WorkoutsContext";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Navbar = () => {
   const pathname = usePathname();
   const { addWorkout, saveWorkout } = useContext(WorkoutsContext);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <nav className="bg-[#0C0D10] py-4 sm:py-5">
@@ -26,30 +28,45 @@ const Navbar = () => {
 
           <h2 className="text-base font-bold sm:text-xl">Fit Log</h2>
         </div>
-
         {/* Navigation */}
-        <div className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2 lg:gap-4">
-          <Link href="/">
-            <button
-              className={`rounded-2xl px-3 py-1.5 text-xs font-bold sm:px-5 sm:py-2 sm:text-sm ${
-                pathname === "/" ? "bg-[#C2F800] text-black" : "text-white"
-              }`}
-            >
-              Workouts
-            </button>
-          </Link>
 
-          <Link href="/myPlan">
-            <button
-              className={`rounded-2xl px-3 py-1.5 text-xs font-bold sm:px-5 sm:py-2 sm:text-sm ${
-                pathname === "/myPlan"
-                  ? "bg-[#C2F800] text-black"
-                  : "text-white"
-              }`}
-            >
-              My Plan
-            </button>
-          </Link>
+        <div className="flex flex-col items-center gap-1 sm:flex-row sm:gap-2 lg:gap-4">
+          {/* Hamburger - mobile only */}
+          <button
+            className="md:hidden text-white"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? "" : <RxHamburgerMenu size={24} />}
+          </button>
+
+          {/* Navigation links */}
+          <div
+            className={`${
+              menuOpen ? "flex" : "hidden"
+            } md:flex flex-col md:flex-row items-center gap-1 sm:gap-2 lg:gap-4`}
+          >
+            <Link href="/" onClick={() => setMenuOpen(false)}>
+              <button
+                className={`rounded-2xl px-3 py-1.5 text-[10px]  text-xs font-bold sm:px-5 sm:py-2 sm:text-sm ${
+                  pathname === "/" ? "bg-[#C2F800] text-black" : "text-white"
+                }`}
+              >
+                Workouts
+              </button>
+            </Link>
+
+            <Link href="/myPlan" onClick={() => setMenuOpen(false)}>
+              <button
+                className={`rounded-2xl px-3 py-1.5 text-[10px] font-bold  sm:px-5 sm:py-2 sm:text-sm ${
+                  pathname === "/myPlan"
+                    ? "bg-[#C2F800] text-black"
+                    : "text-white"
+                }`}
+              >
+                My Plan
+              </button>
+            </Link>
+          </div>
         </div>
 
         {/* Plan / Saved */}
